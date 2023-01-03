@@ -1,0 +1,19 @@
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(122, 122, 226);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 15px;
+    padding: 2px;  
+    max-height: 15vh;
+  }
+  
+  .posts{
+    background-color: rgb(215, 209, 209);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 15px;
+    padding: 2px;
+    border-radius: 10px; 
+    width: 100vw;
+  }

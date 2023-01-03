@@ -1,0 +1,16 @@
+input{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* .willDeliver{
+    display: flex;
+    flex-direction: row ;
+} */
+

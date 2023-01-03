@@ -1,0 +1,68 @@
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    border-right: solid 1px black;
+    padding:5px;
+    width:30vw ;
+    max-width: 30vw;
+    height: 90vh;
+    max-height: 90vh;
+    background-color: lightblue;
+}
+
+header{ 
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    border-bottom: solid 1px black;
+    background-color: lightblue;
+    width: 100vw;
+}
+
+#posts{
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+.myposts{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(237, 233, 233);
+    width:68vw ;
+    max-width: 68vw;
+    height: 45vh;
+    max-height: 100vh;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 10px; 
+}
+
+#fetchpostsbtn{
+    background-color: darktblue;
+    font-size: 1rem;  
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 10px; 
+}
+
+#view{
+    background-color: lightblue;
+    font-size: 1em;  
+    width: 20vw;
+    height: 5vh;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
