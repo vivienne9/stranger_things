@@ -33,8 +33,9 @@ const Post = ({ token, posts, setPosts }) => {
         });
 
         const json = await response.json();
-        console.log(json);
-        setPosts([json,...posts]);
+        console.log(json.data.post);
+        const responsePost = json.data.post;
+        setPosts([responsePost,...posts]);
         
       }catch (error) {
         console.log(error);

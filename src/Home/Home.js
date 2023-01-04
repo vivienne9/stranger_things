@@ -1,8 +1,7 @@
 import "./Home.css";
 import { BASE_URL, COHORT_NAME } from "../Api";
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import Post from "../Post/Post";
 
 const Home = ({
@@ -16,7 +15,7 @@ const Home = ({
   location,
 }) => {
 
-  const HandleSubmit = async () => {
+  const fetchposts = async () => {
     try {
       const response = await fetch(`${BASE_URL}${COHORT_NAME}/posts/`);
       const json = await response.json();
@@ -26,70 +25,83 @@ const Home = ({
     } catch (error) {
       console.log("Failed to fetch posts");
       console.log(error);
-    
-  } 
-}
-  
-  const handleDelete = async (event,token) => {
+    }
+  };
 
-    const postId = event.target.getAttribute("postId");
+  useEffect(() => {
+    fetchposts();
+  }, [posts]);
+
+  const handleDelete = async (event) => {
+    const postId = event.target.getAttribute("postID");
+
+    event.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}${COHORT_NAME}/posts/${postId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${BASE_URL}${COHORT_NAME}/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const json = await response.json();
       console.log(json);
-      // const respPosts = json.data.posts;
+      // const responsePosts = json.data.post;
+      // setPosts([responsePosts, ...posts]);
+
     } catch (error) {
       console.log("Failed to delete post");
       console.log(error);
     }
   };
 
-  // const handleEdit = async (event) => {
-    // const postId = event.target.getAttribute("postId");
+  const handleEdit = async (event) => {
+    const postId = event.target.getAttribute("postID");
 
-  //   try {
-  //     const response = await fetch(`${BASE_URL}${COHORT_NAME}/posts/postId`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         post: {
-  //           title,
-  //           description,
-  //           price,
-  //           location,
-  //         },
-  //       }),
-  //     });
+    try {
+      const response = await fetch(
+        `${BASE_URL}${COHORT_NAME}/posts/${postId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            post: {
+              title,
+              description,
+              price,
+              location,
+            },
+          }),
+        }
+      );
 
-  //     const json = await response.json();
-  //     console.log(json);
-  //     // setPosts([json]);
-  //   } catch (error) {
-  //     console.log("Failed to edit");
-  //     console.log(error);
-  //   }
-  // };
+      const json = await response.json();
+      console.log(json.data.post);
+      const responsePost = json.data.post;
+      setPosts([responsePost, ...posts]);
 
-  // const navigate = useNavigate();
+    } catch (error) {
+      console.log("Failed to edit");
+      console.log(error);
+    }
+  };
+
 
   return (
     <>
       <header>
         <h3>Hello : {me}</h3>
         <h3>Posts</h3>
-        <button id="fetchposts" onClick={HandleSubmit}>
+        {/* <button id="fetchposts" onClick={HandleSubmit}>
           Fetch Posts
-        </button>
+        </button> */}
       </header>
       <main>
         <aside>
@@ -105,21 +117,13 @@ const Home = ({
                 <span>Description: {post.description}</span>
                 <span>Posted At: {post.createdAt}</span>
                 <span>Located At: {post.location}</span>
-                <div id = "postbtn">
-                {/* <button
-                  id="view"
-                  onClick={() => {
-                    navigate(`/posts/${post._id}`)}}
-                    postId={post._id}
-                >
-                  View
-                </button> */}
-                {/* <button id="edit" onClick={handleEdit} postID={post._id}>
-                  Edit
-                </button> */}
-                <button id="delete" onClick={handleDelete} postID={post._id}>
-                  Delete
-                </button>
+                <div id="postbtn">
+                  <button id="edit" onClick={handleEdit} postID={post._id}>
+                    Edit
+                  </button>
+                  <button id="delete" onClick={handleDelete} postID={post._id}>
+                    Delete
+                  </button>
                 </div>
               </div>
             );

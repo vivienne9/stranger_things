@@ -7,11 +7,9 @@ import Welcome from "./WelcomePage/Welcome";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import Home from "./Home/Home";
-// import SingleView from "./SingleView"
-// import Logout from "./Logout";
+import Logout from "./Logout/Logout";
 
 import { myUser } from './Api';
-// import { Post } from "./Post";
  
 const TOKEN = 'stranger_token';
 
@@ -104,32 +102,17 @@ function App() {
             />
           }
         />
-        {/* <Route
-            exact
-            path={`posts/${postId}$`}
-            render={
-              (routeProps) => {
-                const {
-                  match: {
-                    params: {
-                      postId,
-                    },
-                  },
-                } = routeProps;
-
-                return (
-                  <SingleView
-                  />)
-                }
-            }
-        /> */}
-        {/* <Route
-        //   exact path="/logout"
-        //   element={
-        //     <Logout
-        //     />
-        //   }
-        // /> */}
+        <Route
+          exact path="/logout"
+          element={
+            <Logout
+            token={token}
+            setToken={setToken}
+            me={me}
+            setMe={setMe}
+            />
+          } 
+         /> 
       </Routes>
     </Router>
     </>

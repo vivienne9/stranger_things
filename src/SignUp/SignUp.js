@@ -36,7 +36,7 @@ const SignUp = ({username,setUsername,password,setPassword,setToken,token}) => {
                 console.log('Registered successfully');
 
               } catch (error) {
-                console.log('Failed to register');
+                console.log('Failed to register/User Exists');
                 console.log(error);
                 }  
         }}>
