@@ -1,9 +1,8 @@
 import "./Home.css";
 import { BASE_URL, COHORT_NAME } from "../Api";
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Post from "../Post/Post";
-// import Message from "../Message";
 
 const Home = ({
   me,
@@ -15,9 +14,7 @@ const Home = ({
   price,
   location,
 }) => {
-
-  // const [postIdmesg,setPostIdmesg] = useState ('')
-
+  const [content, setContent] = useState([]);
 
   const fetchposts = async () => {
     try {
@@ -54,9 +51,6 @@ const Home = ({
       );
       const json = await response.json();
       console.log(json);
-      // const responsePosts = json.data.post;
-      // setPosts([responsePosts, ...posts]);
-
     } catch (error) {
       console.log("Failed to delete post");
       console.log(error);
@@ -90,15 +84,59 @@ const Home = ({
       console.log(json.data.post);
       const responsePost = json.data.post;
       setPosts([responsePost, ...posts]);
-
     } catch (error) {
       console.log("Failed to edit");
       console.log(error);
     }
   };
-  
- 
-    
+
+  const handleMessage = (event) => {
+    const postIDmessage = event.target.getAttribute("postIDmessage");
+
+    return (
+      <div>
+        <form
+          id="add-message"
+          onSubmit ={ async () => {
+            try {
+              const response = await fetch(
+                `${BASE_URL}${COHORT_NAME}/posts/${postIDmessage}/messages`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({
+                    message: {
+                      content,
+                    },
+                  }),
+                }
+              );
+
+              const json = await response.json();
+              console.log(json.data.message);
+              const responseMessage = json.data.message;
+              setContent([responseMessage]);
+            } catch (error) {
+              console.log("Failed to send message");
+              console.log(error);
+            }
+          }}
+        >
+          <label>Message:</label>
+          <input
+            type="text"
+            placeholder="enter message"
+            value={content}
+            onChange={(event) => setContent(event.target.value)}
+          ></input>
+          <button>Submit</button>
+        </form>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -127,12 +165,18 @@ const Home = ({
                   <button id="edit" onClick={handleEdit} postIDedit={post._id}>
                     Edit
                   </button>
-                  <button id="delete" onClick={handleDelete} postIDdelete={post._id}>
+                  <button
+                    id="delete"
+                    onClick={handleDelete}
+                    postIDdelete={post._id}
+                  >
                     Delete
                   </button>
-                  <button id="message"  onClick={(event)=>{
-                    // setPostIdmesg(event.target.getAttribute("postIDmessage"));
-                  }} postIdmessage={post._id} >
+                  <button
+                    id="message"
+                    onClick={handleMessage}
+                    postIdmessage={post._id}
+                  >
                     Message
                   </button>
                   {/* <Message postIdmesg={postIdmesg} setPostIdmesg={postIdmesg}/> */}
