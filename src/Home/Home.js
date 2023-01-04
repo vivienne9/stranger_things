@@ -3,6 +3,7 @@ import { BASE_URL, COHORT_NAME } from "../Api";
 import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
 import Post from "../Post/Post";
+// import Message from "../Message";
 
 const Home = ({
   me,
@@ -14,6 +15,9 @@ const Home = ({
   price,
   location,
 }) => {
+
+  // const [postIdmesg,setPostIdmesg] = useState ('')
+
 
   const fetchposts = async () => {
     try {
@@ -33,13 +37,13 @@ const Home = ({
   }, [posts]);
 
   const handleDelete = async (event) => {
-    const postId = event.target.getAttribute("postID");
+    const postIDdelete = event.target.getAttribute("postIDdelete");
 
     event.preventDefault();
 
     try {
       const response = await fetch(
-        `${BASE_URL}${COHORT_NAME}/posts/${postId}`,
+        `${BASE_URL}${COHORT_NAME}/posts/${postIDdelete}`,
         {
           method: "DELETE",
           headers: {
@@ -60,11 +64,11 @@ const Home = ({
   };
 
   const handleEdit = async (event) => {
-    const postId = event.target.getAttribute("postID");
+    const postIDedit = event.target.getAttribute("postIDedit");
 
     try {
       const response = await fetch(
-        `${BASE_URL}${COHORT_NAME}/posts/${postId}`,
+        `${BASE_URL}${COHORT_NAME}/posts/${postIDedit}`,
         {
           method: "PATCH",
           headers: {
@@ -92,7 +96,9 @@ const Home = ({
       console.log(error);
     }
   };
-
+  
+ 
+    
 
   return (
     <>
@@ -118,12 +124,18 @@ const Home = ({
                 <span>Posted At: {post.createdAt}</span>
                 <span>Located At: {post.location}</span>
                 <div id="postbtn">
-                  <button id="edit" onClick={handleEdit} postID={post._id}>
+                  <button id="edit" onClick={handleEdit} postIDedit={post._id}>
                     Edit
                   </button>
-                  <button id="delete" onClick={handleDelete} postID={post._id}>
+                  <button id="delete" onClick={handleDelete} postIDdelete={post._id}>
                     Delete
                   </button>
+                  <button id="message"  onClick={(event)=>{
+                    // setPostIdmesg(event.target.getAttribute("postIDmessage"));
+                  }} postIdmessage={post._id} >
+                    Message
+                  </button>
+                  {/* <Message postIdmesg={postIdmesg} setPostIdmesg={postIdmesg}/> */}
                 </div>
               </div>
             );

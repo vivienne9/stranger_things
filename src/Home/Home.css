@@ -55,7 +55,7 @@ header{
     border-radius: 10px; 
 }
 
-#view, #delete, #edit{
+#delete, #edit, #message{
     background-color: lightblue;
     font-size: 1em;  
     width: 15vw;

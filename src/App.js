@@ -8,6 +8,8 @@ import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import Home from "./Home/Home";
 import Logout from "./Logout/Logout";
+// import Message from "./Message";
+
 
 import { myUser } from './Api';
  
@@ -20,6 +22,7 @@ function App() {
   const [token, setToken] = useState('')
   const [me, setMe] = useState('');
   const [posts, setPosts] = useState([]);
+ 
 
   const storeToken =(responseToken) => {   
     localStorage.setItem(TOKEN,responseToken);
@@ -99,6 +102,7 @@ function App() {
             posts={posts}
             setPosts={setPosts}
             token={token}
+
             />
           }
         />
@@ -113,6 +117,15 @@ function App() {
             />
           } 
          /> 
+         {/* <Route
+          exact path="/message"
+          element={
+            <Message
+            token={token}
+            me={me}
+            />
+          } 
+         />  */}
       </Routes>
     </Router>
     </>
