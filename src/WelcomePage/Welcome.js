@@ -1,7 +1,7 @@
 import "./Welcome.css"
+import { BASE_URL, COHORT_NAME } from "../Api";
 import React,{useEffect} from "react";
 import {Link } from "react-router-dom";
-import { BASE_URL, COHORT_NAME } from "../Api";
 
 const Welcome = ({posts,setPosts}) => {
 

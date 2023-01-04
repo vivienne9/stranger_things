@@ -1,11 +1,10 @@
-import { BASE_URL, COHORT_NAME } from "../Api";
 import React from "react";
 
+const SingleView = ({post}) => {
+return(
+    <h1>{post._id}</h1>
+)
 
-const SingleView = () => {
-
-
-
-}
+};
 
 export default SingleView;

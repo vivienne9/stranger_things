@@ -1,7 +1,7 @@
 import "./SignUp.css";
+import { BASE_URL, COHORT_NAME } from "../Api";
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { BASE_URL, COHORT_NAME } from "../Api";
 
 
 const SignUp = ({username,setUsername,password,setPassword,setToken,token}) => {

@@ -22,7 +22,7 @@ header{
     justify-content: space-around;
     text-align: center;
     border-bottom: solid 1px black;
-    background-color: lightblue;
+    background-color: rgb(58, 125, 147);
     width: 100vw;
 }
 
@@ -47,7 +47,7 @@ header{
     border-radius: 10px; 
 }
 
-#fetchpostsbtn{
+#fetchposts{
     background-color: darktblue;
     font-size: 1rem;  
     padding: 14px 20px;
@@ -55,14 +55,19 @@ header{
     border-radius: 10px; 
 }
 
-#view{
+#view, #delete, #edit{
     background-color: lightblue;
     font-size: 1em;  
-    width: 20vw;
+    width: 15vw;
     height: 5vh;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
     text-align: center;
+}
+
+#postbtn{
+    display: flex;
+    flex-direction: row;
 }
 
