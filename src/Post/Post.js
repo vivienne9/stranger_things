@@ -11,7 +11,7 @@ const Post = ({ token, posts, setPosts }) => {
   // const [willDeliver,setWillDeliver] = useState('')
 
   return (
-    <form
+    <form id="add-post"
       onSubmit = {async (event) => {
         event.preventDefault();
         try {
