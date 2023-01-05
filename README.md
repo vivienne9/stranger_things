@@ -1,11 +1,11 @@
 Implemented folowing functionality successfully:
 > CRUD: Get, Post, Delete
-note: Edit does not work
+Note: Edit does not work
 
 >Sign Up , Login, Logout
 >Components, Props, Ajax
 
-> Messages does not work
+Note: Messages does not work
 
 # Getting Started with Create React App
 
